@@ -1,0 +1,101 @@
+<html ng-app="demoApp">
+<head>
+    <title>drpx-route-component demo</title>
+    <style>
+    body,html {
+        width: 100%;
+        height: 100%;
+        padding: 0; margin: 0;
+    }
+    header, footer {
+        width: 100%;
+        height: 20%;
+    }
+    main {
+        width: 100%;
+        height: 60%;
+    }
+
+    .container {
+        position: relative;
+        xwidth: 100%;
+        xheight: 100%;
+        overflow: hidden;
+    }
+    .continent {
+        display: absolute;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0; left: 0;
+        overflow: hidden;
+        transition: all .4s;
+    }
+
+    .transition-slideleft.ng-enter {
+        transform: translatex(100%);
+    }
+    .transition-slideleft.ng-enter.ng-enter-active {
+        transform: translatex(0%);
+    }
+    .transition-slideleft.ng-leave.ng-leave-active {
+        transform: translatex(-100%);
+    }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <div drpx-route-component data-route-property="title" class="continent transition-slideleft">
+            {{title}} - {{vm.a}}
+        </div>
+    </header>
+
+    <main class="container">
+        <div ng-view autoscroll="1" class="continent transition-slideleft"></div>
+    </main>
+
+    <footer class="container">
+        <div drpx-route-component class="continent transition-slideleft">
+            footer - {{vm.a}}
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="drpx-route-component.js"></script>
+    <script>
+        angular
+            .module('demoApp', ['drpxRouteComponent','ngAnimate','ngRoute'])
+            .config(RootRoute)
+            .config(ItemsItemRoute)
+            ;
+
+        var resolve = { delay: function($timeout) {return $timeout(angular.noop, 1*1000);} };
+
+        function RootRoute($routeProvider) {
+            $routeProvider.when('/', {
+                template: '<ul><li><a href="#/items/1">Item 1</a></li><li><a href="#/items/2">Item 2</a></li></ul>',
+                title: 'Root',
+                controller: function() { this.a = 'i am root'; },
+                controllerAs: 'vm',
+                resolve: resolve
+            }).otherwise({redirectTo: '/'});
+        }
+
+        function ItemsItemRoute($routeProvider) {
+            $routeProvider.when('/items/:item', {
+                template: 'An item -{{vm.a}}- (<a href="#/">back</a>)',
+                title: 'Item',
+                controller: function($routeParams) { this.a = 'i am item '+$routeParams.item; },
+                controllerAs: 'vm',
+                resolve: resolve
+            });
+        }
+
+
+    </script>
+</body>
+</html>

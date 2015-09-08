@@ -1,0 +1,31 @@
+{
+  "name": "drpx-route-component",
+  "version": "1.0.0",
+  "authors": [
+    "David Rodenas Pico <david.rodenas@gmail.com>"
+  ],
+  "description": "An angular directive that replicates a component for each route",
+  "main": "drpx-route-component.js",
+  "keywords": [
+    "angular",
+    "component",
+    "route",
+    "animate"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/drpicox/drpx-route-component",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "index.js",
+    "demo.html",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.28 <2.0.0",
+    "angular-route": ">=1.2.28 <2.0.0"
+  }
+}
