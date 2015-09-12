@@ -41,9 +41,12 @@
     .transition-slideleft.ng-leave.ng-leave-active {
         transform: translatex(-100%);
     }
+    [ng-cloak] {
+        display: none;
+    }
     </style>
 </head>
-<body>
+<body ng-cloak>
 
     <header class="container">
         <div drpx-route-component data-route-property="title" class="continent transition-slideleft">

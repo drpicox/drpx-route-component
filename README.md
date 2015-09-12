@@ -3,6 +3,17 @@ An angular directive that replicates a component for each route. It is a kind of
 
 It's main purpose is to enable the definition of powerful components that can be configured by the route itself. For example, in addition to the main ng-view, you can define custom views for header and footer.
 
+Example:
+
+```html
+<body>
+  <h1 drpx-route-component data-route-property="title">
+     {{title}}
+  </h1>
+  <ng-view></ng-view>
+</body>
+```
+
 
 Install - npm
 -------------
